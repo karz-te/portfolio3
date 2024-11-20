@@ -16,12 +16,15 @@ jobs:
         with:
           fetch-depth: 0
 
-      # デバッグ: 現在のディレクトリ構造を確認
+      # デバッグ: 現在のディレクトリとファイル構造を確認
       - name: Show current directory
         run: pwd
 
-      - name: List files in current directory
+      - name: List files in root directory
         run: ls -al
+
+      - name: List all files recursively
+        run: find .
 
       # Node.jsのセットアップ
       - name: Set up Node.js
@@ -29,21 +32,7 @@ jobs:
         with:
           node-version: 20.13.1
 
-      # 正しいディレクトリで依存関係をインストール
+      # 必要に応じて正しいディレクトリで依存関係をインストール
       - name: Install dependencies
         run: npm install
-        working-directory: /home/runner/work/portfolio3/my-next-app1
-
-      # Next.jsプロジェクトのビルドとエクスポート
-      - name: Build and export Next.js project
-        run: |
-          npm run build
-          npm run export
-        working-directory: /home/runner/work/portfolio3/my-next-app1
-
-      # ビルドされたファイルを GitHub Pages にデプロイ
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: /home/runner/work/portfolio3/my-next-app1/out
+        working-directory: ./my-next-app1
