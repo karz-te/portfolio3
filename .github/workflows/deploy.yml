@@ -23,6 +23,7 @@ jobs:
       # 依存関係のインストール
       - name: Install dependencies
         run: npm install
+        working-directory: ./my-next-app
 
       # Next.jsプロジェクトのビルドとエクスポート
       - name: Build and export Next.js project
