@@ -3,7 +3,7 @@ name: Deploy Next.js to GitHub Pages
 on:
   push:
     branches:
-      - main  #デプロイ対象のブランチ
+      - main
 
 jobs:
   build-and-deploy:
@@ -13,33 +13,42 @@ jobs:
       # リポジトリをチェックアウト
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      # 現在のディレクトリ構造を確認
-      - name: List files in current directory
-        run: ls -al
-        
+      # 現在のディレクトリを確認
+      - name: Show current directory
+        run: pwd
+
+      # ルートディレクトリのファイル構造を確認
+      - name: List files in root directory
+        run: ls -al /home/runner/work/portfolio3
+
+      # サブディレクトリのファイル構造を確認
+      - name: List files in suspected directory
+        run: ls -al /home/runner/work/portfolio3/portfolio3
+
       # Node.jsのセットアップ
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 20.13.1
 
-      # 正しいディレクトリで依存関係をインストール
+      # 依存関係のインストール
       - name: Install dependencies
-        run: |
-          cd /home/runner/work/portfolio3/portfolio3
-          npm install
+        run: npm install
+        working-directory: ./app  # 必要に応じて正しいパスに変更
 
       # Next.jsプロジェクトのビルドとエクスポート
       - name: Build and export Next.js project
         run: |
-          cd /home/runner/work/portfolio3/portfolio3
           npm run build
           npm run export
+        working-directory: ./app  # 必要に応じて正しいパスに変更
 
       # ビルドされたファイルを GitHub Pages にデプロイ
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out
+          publish_dir: ./app/out  # 必要に応じて正しいパスに変更
