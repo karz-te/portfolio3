@@ -3,4 +3,5 @@
 export default {
     output: 'export',
     assetPrefix: './',
-}
+    basePath: '/portfolio3',
+};
