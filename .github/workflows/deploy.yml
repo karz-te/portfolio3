@@ -8,11 +8,24 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
-      # リポジトリをクローン
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # デバッグ: ファイル構造を確認
-      - name: List all files and directories
-        run: find .
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Next.js
+        run: npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
