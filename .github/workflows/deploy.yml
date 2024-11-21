@@ -8,31 +8,11 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
-      # リポジトリをチェックアウト
+      # リポジトリをクローン
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
-      # デバッグ: 現在のディレクトリとファイル構造を確認
-      - name: Show current directory
-        run: pwd
-
-      - name: List files in root directory
-        run: ls -al
-
-      - name: List all files recursively
+      # デバッグ: ファイル構造を確認
+      - name: List all files and directories
         run: find .
-
-      # Node.jsのセットアップ
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20.13.1
-
-      # 必要に応じて正しいディレクトリで依存関係をインストール
-      - name: Install dependencies
-        run: npm install
-        working-directory: ./my-next-app1
