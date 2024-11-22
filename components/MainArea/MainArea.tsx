@@ -7,9 +7,9 @@ interface MainAreaProps {
 }
 
 const images = [
-    "tsxImage1.png",
-    "tsxImage2.png",
-    "cssImage.png",
+    "/tsxImage1.png",
+    "/tsxImage2.png",
+    "/cssImage.png",
 ];
 
 const MainArea: React.FC<MainAreaProps> = ({ currentSection }) => {

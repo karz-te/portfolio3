@@ -1,17 +1,16 @@
 //*@type {import('next').NextConfig}*/
-import { writeFileSync } from 'fs';
+
+// GitHub Pages用
 
 export default {
     output: 'export',
-    basePath: '/portfolio3', // デプロイ先リポジトリ名が 'portfolio3' の場合
-    assetPrefix: '/portfolio3/',
+    basePath:'/portfolio3', // デプロイ先リポジトリ名が 'portfolio3' の場合
+    assetPrefix:'/portfolio3/',
     distDir: 'docs',
-    async exportPathMap(defaultPathMap, { outDir }) {
-        writeFileSync(`${outDir}/.nojekyll`, '');
-        return defaultPathMap;
-    }, 
 };
 
+
+// ローカルホスト用
 /*
 export default {
     output: 'export',
