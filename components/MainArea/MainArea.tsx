@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import styles from './MainArea.module.css';
+import getConfig from 'next/config';
 
 // Props の型定義
 interface MainAreaProps {
     currentSection: string;
 }
 
+const { publicRuntimeConfig } = getConfig();
+const basePath = publicRuntimeConfig?.basePath || '';
+
+
 const images = [
-    "/tsxImage1.png",
-    "/tsxImage2.png",
-    "/cssImage.png",
+    `${basePath}/tsxImage1.png`,
+    `${basePath}/tsxImage2.png`,
+    `${basePath}/cssImage.png`,
 ];
 
 const MainArea: React.FC<MainAreaProps> = ({ currentSection }) => {

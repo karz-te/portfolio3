@@ -24,6 +24,9 @@ jobs:
       - name: Build Next.js
         run: npm run build
 
+      - name: Show build output
+        run: ls -R ./docs
+
       - name: Add .nojekyll file
         run: echo '' > docs/.nojekyll
 
