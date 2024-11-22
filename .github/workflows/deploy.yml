@@ -32,5 +32,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
-          keep_files: true          # 既存ファイルを保持して上書きする
+          keep_files: false          # 既存ファイルを保持して上書きする
           allow_empty_commit: true  # 空のコミットも許可
