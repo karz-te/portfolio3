@@ -7,14 +7,20 @@ interface MainAreaProps {
     currentSection: string;
 }
 
+/* GitHub用
 const { publicRuntimeConfig } = getConfig();
 const basePath = publicRuntimeConfig?.basePath || '';
-
-
 const images = [
     `${basePath}/tsxImage1.png`,
     `${basePath}/tsxImage2.png`,
     `${basePath}/cssImage.png`,
+];
+*/
+
+const images = [
+    '/tsxImage1.png',
+    '/tsxImage2.png',
+    '/cssImage.png',
 ];
 
 const MainArea: React.FC<MainAreaProps> = ({ currentSection }) => {
