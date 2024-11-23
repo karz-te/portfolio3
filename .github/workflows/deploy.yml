@@ -10,26 +10,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # リポジトリのチェックアウト
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # Node.js 環境のセットアップ
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 20
 
+      # 依存関係のインストール
       - name: Install dependencies
         run: npm install
 
-      - name: Build Next.js
-        run: npm run build
+      # Next.js をビルドして静的サイトを生成
+      - name: Build and export Next.js
+        run: npm run export
 
+      # エクスポート内容の確認
       - name: Show build output
         run: ls -R ./docs
 
+      # .nojekyll ファイルを追加
       - name: Add .nojekyll file
         run: echo '' > docs/.nojekyll
 
+      # GitHub Pages にデプロイ
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:

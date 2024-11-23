@@ -11,6 +11,9 @@ export default {
     publicRuntimeConfig: {
         basePath: '/portfolio3', // ランタイムで利用可能な basePath
     },
+    sassOptions: {
+        includePaths: [path.join(__dirname, 'styles')],
+    },
 };
 
 
